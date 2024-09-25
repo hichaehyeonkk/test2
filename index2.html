@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>The Butterfly Dream</title>
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <link rel="stylesheet" href="css/bootstrap-page-transitions.min.css" />
+  <link rel="icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+  <link rel="shortcut icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+  <style>
+    .title {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .title img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .eyes {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+    }
+
+    .eye {
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      display: inline-block;
+      margin: 20px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ball {
+      width: 30px;
+      height: 30px;
+      background: #000;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 30px solid #333;
+      transition: all 0.5s ease-out; /* 부드럽게 움직이도록 transition 설정 */
+    }
+
+    /* 눈꺼풀 스타일 추가 */
+    .eyelid {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background-color: #fff;
+      top: 0;
+      left: 0;
+      transform-origin: top;
+      transition: transform 0.5s ease;
+      z-index: 1;
+    }
+
+    /* 아래 눈꺼풀 */
+    .eyelid.bottom {
+      top: auto;
+      bottom: 0;
+      transform-origin: bottom;
+    }
+
+    /* 깜빡이는 애니메이션 */
+    .eye.blink .eyelid {
+      transform: scaleY(0); /* 닫히는 효과 */
+    }
+
+    .btn-container {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 20px;
+      width: 200px;
+      height: 60px;
+    }
+
+    .btn:hover {
+      background-color: #ddd;
+    }
+
+    .right-dots {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .dot {
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin: 30px 0;
+      position: relative;
+      color: #000;
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .dot .text-content {
+      line-height: 1.5;
+      padding: 5px;
+      display: none;
+    }
+
+    .dot:hover {
+      background-color: #ddd;
+    }
+
+    .hover-box {
+      position: absolute;
+      width: 300px;
+      height: auto;
+      max-width: 90%;
+      max-height: 300px;
+      overflow-y: auto;
+      border-radius: 20px;
+      background-color: #000;
+      opacity: 0.5;
+      display: none;
+      color: #fff;
+      font-size: 16px;
+      padding: 20px;
+      z-index: 10;
+      left: calc(100% + 20px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+
+<body style="background-color: #FF7C00;">
+  <div class="title"><img src="Asset 2@2x.png" alt="Title Image"></div>
+  <div class="eyes">
+    <div class="eye">
+      <div class="eyelid"></div>
+      <div class="eyelid bottom"></div>
+      <div class="ball"></div>
+    </div>
+    <div class="eye">
+      <div class="eyelid"></div>
+      <div class="eyelid bottom"></div>
+      <div class="ball"></div>
+    </div>
+  </div>
+  <div class="btn-container">
+    <button class="btn" onclick="window.location.href='./box2.html'">꿈 속으로</button>
+  </div>
+  <div class="right-dots">
+    <div class="dot" onclick="window.location.href='./index.html'" onmouseover="showHoverBox(this)" onmouseout="hideHoverBox()">
+      1
+      <div class="text-content">
+        昔者荘周夢為胡蝶。栩栩然胡蝶也。<br><br> 이전의 일, 나 장주는 꿈 속에서 나비가 되었다. 희희로서 나비가 되어 있었다.
+      </div>
+    </div>
+    <div class="dot" onclick="window.location.href='./index2.html'" onmouseover="showHoverBox(this)" onmouseout="hideHoverBox()">
+      2
+      <div class="text-content">
+        自喩適志與。不知周也。俄然覺、則蘧蘧然周也。<br><br> 스스로도 즐거워서 마음 따라 팔랑팔랑 춤추고 있었다. 장주인 것은 완전히 염두에 없었다. 깜짝 깨어나니, 이게 웬 일, 장주가 아닌가.
+      </div>
+    </div>
+    <div class="dot" onclick="window.location.href='./index3.html'" onmouseover="showHoverBox(this)" onmouseout="hideHoverBox()">
+      3
+      <div class="text-content">
+        不知、周之夢為胡蝶與、胡蝶之夢為周與。<br><br> 그런데, 장주인 내가 꿈 속에서 나비가 되었는지, 내가 실은 나비인데 지금 꿈에서 장주로 있는지, 어느 것이 사실인지 나는 모른다.
+      </div>
+    </div>
+    <div class="dot" onclick="window.location.href='./index4.html'" onmouseover="showHoverBox(this)" onmouseout="hideHoverBox()">
+      4
+      <div class="text-content">
+        周與胡蝶、則必有分矣。此之謂物化。<br><br> 장주와 나비에는 확실히, 형태상으로는 구별이 있을 것이다. 그러나 주체로서의 자신에게는 변화는 없고, 이것이 물건의 변화라는 것이다.
+      </div>
+    </div>
+  </div>
+  <div class="hover-box" id="hoverBox"></div>
+
+  <script type="text/javascript">
+    const balls = document.getElementsByClassName("ball");
+    document.onmousemove = function (event) {
+      let x = (event.clientX * 100) / window.innerWidth + "%";
+      let y = (event.clientY * 100) / window.innerHeight + "%";
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].style.left = x;
+        balls[i].style.top = y;
+        balls[i].style.transform = "translate(-" + x + ", -" + y + ")";
+      }
+    };
+
+    let isBlinking = false; // 깜빡임 상태 플래그 추가
+
+    // 눈꺼풀 깜빡임 애니메이션
+    function blink() {
+      if (!isBlinking) { // 현재 깜빡이지 않고 있을 때만 실행
+        isBlinking = true; // 깜빡임 상태 설정
+        document.querySelectorAll('.eye').forEach((eye) => {
+          eye.classList.add('blink'); // 닫히는 애니메이션
+          setTimeout(() => {
+            eye.classList.remove('blink'); // 눈이 다시 떠지기
+            isBlinking = false; // 깜빡임 상태 해제
+          }, 2500); // 2초 후 눈이 뜸
+        });
+      }
+    }
+
+    // 일정 간격으로 눈 깜빡임
+    setInterval(() => {
+      blink();
+    }, 1500); // 5.5초마다 blink 실행 (2초 감고 3.5초 뜨기)
+
+    function showHoverBox(dot) {
+      const hoverBox = document.getElementById("hoverBox");
+      const textContent = dot.querySelector(".text-content").innerHTML;
+      hoverBox.innerHTML = textContent;
+      hoverBox.style.maxWidth = window.innerWidth - 40 + "px";
+      hoverBox.style.maxHeight = window.innerHeight - 40 + "px";
+      const rect = dot.getBoundingClientRect();
+      hoverBox.style.top = rect.top + "px";
+      hoverBox.style.left = rect.left - 320 + "px";
+      hoverBox.style.display = "flex";
+    }
+
+    function hideHoverBox() {
+      const hoverBox = document.getElementById("hoverBox");
+      hoverBox.style.display = "none";
+    }
+  </script>
+</body>
+
+</html>
+
+
+
+
+

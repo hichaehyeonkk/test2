@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Butterfly Dream</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link rel="icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+    <style>
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #blocker {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .element {
+            width: 3000px;
+            height: 3000px;
+            background-color: #000000;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        iframe {
+            width: 90%;
+            height: 90%;
+            border: 0;
+        }
+
+        /* 추가된 버튼 스타일 */
+        .button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: 40px;
+            border-radius: 50px;
+            background-color: #ffffff;
+            color: #FF7C00;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1; /* 다른 요소들보다 위에 표시되도록 설정 */
+        }
+
+        /* Overlay Text Style */
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px; /* Adjust width as needed */
+            height: 65px; /* Adjust height as needed */
+            background-color: rgba(255, 255, 255, 0.6); /* White with 60% opacity */
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px; /* Font size */
+            color: #343434; /* Text color */
+            z-index: 2; /* Above other elements */
+            opacity: 1; /* Start fully visible */
+            animation: fadeOut 4s forwards 0.5s; /* Wait 5 seconds, then fade out over 5s */
+        }
+
+        /* Keyframe to animate the opacity */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div id="blocker"></div>
+
+<!-- Overlay Text -->
+<div class="overlay">
+    마우스를 좌,우로 드래그하며 움직여보세요.
+</div>
+
+<!-- 추가된 버튼 -->
+<button class="button" onclick="window.location.href='./index2.html'">일어나기</button>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "./three.module.js",
+            "three/addons/": "./jsm/"
+        }
+    }
+</script>
+
+<script type="module">
+
+import * as THREE from 'three';
+
+import { TrackballControls } from './TrackballControls.js';
+import { CSS3DRenderer, CSS3DObject } from './CSS3DRenderer.js';
+
+let camera, scene, renderer;
+let controls;
+
+function Element(image, x, y, z, rx, ry, rz) {
+    const div = document.createElement('div');
+    div.className = 'element';
+
+    const img = document.createElement('img');
+    img.src = image;
+    img.style.width = '100%';
+    img.style.height = '100%';
+
+    div.appendChild(img);
+
+    const object = new CSS3DObject(div);
+    object.position.set(x, y, z);
+    object.rotation.set(rx, ry, rz);
+
+    return object;
+}
+
+function init() {
+    const container = document.getElementById('container');
+
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
+    camera.position.set(0, 0, 1500); // 카메라 위치를 스카이박스 중앙에 배치
+
+    scene = new THREE.Scene();
+
+    renderer = new CSS3DRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
+
+    const group = new THREE.Group();
+    group.add(new Element('https://i.ibb.co/5RCBtJ0/2nd-ft.png', 0, 0, 1500, 0, 0, 0)); // Front
+    group.add(new Element('https://i.ibb.co/dWjN2CR/2nd-bk.png', 0, 0, -1500, 0, Math.PI, 0)); // Back
+    group.add(new Element('https://i.ibb.co/LNsjJxN/2nd-up.png', 0, 1500, 0, -Math.PI / 2, 0, -Math.PI / 2)); // Top
+    group.add(new Element('https://i.ibb.co/bv3v2N3/2nd-dn.png', 0, -1500, 0, Math.PI / 2, 0, Math.PI / 2)); // Bottom
+    group.add(new Element('https://i.ibb.co/BG0c8Td/2nd-rt.png', -1500, 0, 0, 0, -Math.PI / 2, 0)); // Left
+    group.add(new Element('https://i.ibb.co/S00QFrz/2nd-lf.png', 1500, 0, 0, 0, Math.PI / 2, 0)); // Right
+
+    scene.add(group);
+
+    // Add a cube at the center of the scene
+    const geometry = new THREE.BoxGeometry(500, 100, 15);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, opacity: 0.5, transparent: true });
+    const cube = new THREE.Mesh(geometry, material);
+
+    scene.add(cube); // 육면체를 스카이박스에 추가
+
+    controls = new TrackballControls(camera, renderer.domElement);
+    controls.rotateSpeed = 2; // 수평으로만 회전하도록 회전 속도를 줄임
+    controls.noRotateVertical = true; // 수직 방향으로의 회전을 비활성화
+    controls.noPan = true; // 카메라의 이동을 비활성화하여 박스가 고정되도록 함
+
+    window.addEventListener('resize', onWindowResize);
+
+    // Block iframe events when dragging camera
+
+    const blocker = document.getElementById('blocker');
+    blocker.style.display = 'none';
+
+    controls.addEventListener('start', function () {
+        blocker.style.display = '';
+    });
+
+controls.addEventListener('end', function () {
+    blocker.style.display = 'none';
+});
+}
+
+function onWindowResize() {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+requestAnimationFrame(animate);
+
+// 고정축 생성
+const targetPosition = new THREE.Vector3(0, 0, 0); // 고정할 축의 위치
+const cameraPosition = camera.position.clone().sub(targetPosition);
+const angle = Math.atan2(cameraPosition.y, cameraPosition.x); // 카메라 위치와 축 사이의 각도
+const rotation = new THREE.Euler(0, 0, angle); // 회전을 적용할 Euler 객체 생성
+camera.quaternion.setFromEuler(rotation); // 카메라의 쿼터니언을 회전값으로 설정
+
+controls.update();
+renderer.render(scene, camera);
+}
+
+init();
+animate();
+
+</script>
+</body>
+</html>

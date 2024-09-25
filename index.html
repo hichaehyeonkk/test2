@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Butterfly Dream</title>
+    <link rel="icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/PYcNDmq/icon.png">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: rgba(224, 247, 250, 1); /* RGBA 형식의 배경색 */
+            transition: opacity 1s ease, background-color 1s ease; /* 페이드 아웃 애니메이션 */
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: url('https://i.ibb.co/fFPQrqH/butterfly2.gif'); /* 나비 이미지를 삽입하세요 */
+            background-size: cover;
+            pointer-events: none; /* 마우스 이벤트를 차단하여 나비가 마우스 클릭에 영향을 미치지 않도록 함 */
+        }
+    </style>
+</head>
+<body>
+    <div class="butterfly"></div>
+
+    <script>
+        const butterfly = document.querySelector('.butterfly');
+        let mouseX = window.innerWidth / 2;  // 마우스의 초기 위치를 화면 가운데로 설정
+        let mouseY = window.innerHeight / 2;
+        let butterflyX = mouseX;  // 나비의 초기 위치
+        let butterflyY = mouseY;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        function animate() {
+            const speed = 0.2; // 이동 속도 (값이 작을수록 천천히 따라감)
+            
+            // 현재 위치에서 마우스 위치로 조금씩 이동
+            butterflyX += (mouseX - butterflyX) * speed;
+            butterflyY += (mouseY - butterflyY) * speed;
+
+            // 나비의 위치 업데이트
+            butterfly.style.transform = `translate(${butterflyX - 100}px, ${butterflyY - 100}px)`; // 나비의 중심에 맞추기 위해 -100px
+
+            requestAnimationFrame(animate); // 애니메이션 루프
+        }
+
+        animate(); // 애니메이션 시작
+
+        // 페이지 전환 및 페이드 아웃 이벤트
+        document.addEventListener('click', () => {
+            document.body.style.opacity = '0';  // 투명도가 0%로 줄어듦
+            document.body.style.backgroundColor = 'rgba(224, 247, 250, 0)';  // 배경색을 투명하게 변경
+            setTimeout(() => {
+                window.location.href = 'index1.html';  // main.html로 페이지 이동 (원하는 URL로 변경 가능)
+            }, 1000);  // 1초 후에 페이지 이동 (투명도가 줄어드는 시간과 동일)
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
