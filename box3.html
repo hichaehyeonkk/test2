@@ -162,12 +162,12 @@ function init() {
     container.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
-    group.add(new Element('https://i.ibb.co/LCfD35W/3rd-ft.png', 0, 0, 1500, 0, 0, 0)); // Front
-    group.add(new Element('https://i.ibb.co/BgZCwBW/3rd-bk.png', 0, 0, -1500, 0, Math.PI, 0)); // Back
-    group.add(new Element('https://i.ibb.co/rx5V1S6/3rd-up.png', 0, 1500, 0, -Math.PI / 2, 0, -Math.PI / 2)); // Top
-    group.add(new Element('https://i.ibb.co/XyJTTGb/3rd-dn.png', 0, -1500, 0, Math.PI / 2, 0, Math.PI / 2)); // Bottom
-    group.add(new Element('https://i.ibb.co/D44wNpp/3rd-rt.png', -1500, 0, 0, 0, -Math.PI / 2, 0)); // Left
-    group.add(new Element('https://i.ibb.co/gJPYS5Q/3rd-lf.png', 1500, 0, 0, 0, Math.PI / 2, 0)); // Right
+    group.add(new Element('3rd_ft.png', 0, 0, 1500, 0, 0, 0)); // Front
+    group.add(new Element('3rd_bk.png', 0, 0, -1500, 0, Math.PI, 0)); // Back
+    group.add(new Element('3rd_up.png', 0, 1500, 0, -Math.PI / 2, 0, -Math.PI / 2)); // Top
+    group.add(new Element('3rd_dn.png', 0, -1500, 0, Math.PI / 2, 0, Math.PI / 2)); // Bottom
+    group.add(new Element('3rd_rt.png', -1500, 0, 0, 0, -Math.PI / 2, 0)); // Left
+    group.add(new Element('3rd_lf.png', 1500, 0, 0, 0, Math.PI / 2, 0)); // Right
 
     scene.add(group);
 
