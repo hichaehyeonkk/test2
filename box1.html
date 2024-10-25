@@ -161,12 +161,12 @@ function init() {
     container.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
-    group.add(new Element('https://i.ibb.co/h830sKf/meadow-ft.jpg', 0, 0, 1500, 0, 0, 0)); // Front
-    group.add(new Element('https://i.ibb.co/jZynYCD/meadow-bk.jpg', 0, 0, -1500, 0, Math.PI, 0)); // Back
-    group.add(new Element('https://i.ibb.co/SmBN9Mk/meadow-up.jpg', 0, 1500, 0, -Math.PI / 2, 0, -Math.PI / 2)); // Top
-    group.add(new Element('https://i.ibb.co/kMKdty6/meadow-dn.jpg', 0, -1500, 0, Math.PI / 2, 0, Math.PI / 2)); // Bottom
-    group.add(new Element('https://i.ibb.co/3kwc4pL/meadow-rt.jpg', -1500, 0, 0, 0, -Math.PI / 2, 0)); // Left
-    group.add(new Element('https://i.ibb.co/q04JRZF/meadow-lf.jpg', 1500, 0, 0, 0, Math.PI / 2, 0)); // Right
+    group.add(new Element('meadow_ft.jpg', 0, 0, 1500, 0, 0, 0)); // Front
+    group.add(new Element('meadow_bk.jpg', 0, 0, -1500, 0, Math.PI, 0)); // Back
+    group.add(new Element('meadow_up.jpg', 0, 1500, 0, -Math.PI / 2, 0, -Math.PI / 2)); // Top
+    group.add(new Element('meadow_dn.jpg', 0, -1500, 0, Math.PI / 2, 0, Math.PI / 2)); // Bottom
+    group.add(new Element('meadow_rt.jpg', -1500, 0, 0, 0, -Math.PI / 2, 0)); // Left
+    group.add(new Element('meadow-_lf.jpg', 1500, 0, 0, 0, Math.PI / 2, 0)); // Right
 
     // Add the group to the scene directly
     scene.add(group);
